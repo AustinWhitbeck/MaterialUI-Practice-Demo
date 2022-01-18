@@ -4,6 +4,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Rating from '@mui/material/Rating';
+import Button from '@mui/material/Button';
 
 // Icons Import
 
@@ -34,6 +35,10 @@ import {  AccessTime } from '@mui/icons-material';
 
 
 import {  createTheme, ThemeProvider } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 
 const theme = createTheme({
@@ -58,9 +63,17 @@ const theme = createTheme({
               variant: "body3"
             },
             style: {
-              fontSize: 9,
+              fontSize: 10,
             }
           },
+          {
+            props: {
+              variant: "subtitle2"
+            },
+            style: {
+              fontSize: 10,
+            }
+          }
         ]
       }
     }
@@ -68,13 +81,36 @@ const theme = createTheme({
 })
 
 
-const TourCard = () => {
+// Now we are importing the tour prop from the App.js file which is taking in the data.json information.
+// this is information that is being iterated over and each individual tour is mapped across this component.
+
+const TourCard = ({tour}) => {
+
+    const navigate = useNavigate();
+
+
+    const tourLink = () => {
+        navigate(`/${tour.id}`)
+    }
+
+    // const thisTour = {
+    //     name: tour.name,
+    //     image: tour.image,
+    //     id: tour.id
+    // }
+
     return (
-        <Grid item xs={3}>
+        <Grid 
+            item xs={3}
+        >
             <ThemeProvider theme={theme}>
+                <Button
+                onClick={tourLink}
+                >
 {/* Elevation is how far off thep age the box shadow makes it look */}
                 <Paper elevation={3}>
-                    <img src="https://www.atlasandboots.com/wp-content/uploads/2019/05/ama-dablam2-most-beautiful-mountains-in-the-world-1024x683.jpg" 
+                    <img 
+                        src={tour.image}
                         alt="vacation spot"
                         className="img"
                         />
@@ -82,7 +118,7 @@ const TourCard = () => {
                     <Box paddingX={1}>
 {/* variant of subtitle is a type of h2 that is even smaller than putting h4 as a variant but making it an h2 element */}
                         <Typography component="h2" variant="subtitle1">
-                            Lose yourself in the Mountains
+                            {tour.name}
                         </Typography>
 
                             {/* Add a style sheet by using the prop 'sx' */}
@@ -100,7 +136,7 @@ const TourCard = () => {
                                 }}
                             />
                             <Typography variant="body2" component="paragraph" marginLeft={0.5}>
-                                5 Hours
+                                {tour.duration} Hours
                             </Typography>
                         </Box>
                         <Box
@@ -113,7 +149,7 @@ const TourCard = () => {
                             
                             <Rating
                                 name="read-only"
-                                value={4.5}
+                                value={tour.rating}
                                 readOnly
                                 precision={0.5}
                                 size="small"
@@ -122,20 +158,21 @@ const TourCard = () => {
 
                             
                             <Typography variant="body2" component="paragraph" marginLeft={0.5}>
-                                4.5
+                               {tour.rating}
                             </Typography>
                             <Typography variant="subtitle2" component="paragraph" marginLeft={3.5}>
-                                (655 reviews)
+                               ( {tour.numberOfReviews} reviews )
                             </Typography>
                             
                         </Box>
                         <Box>
                                 <Typography variant="h6" component="h3" marginTop={0} >
-                                    From $380
+                                    From ${tour.price}
                                 </Typography>
                         </Box>
                     </Box>
                 </Paper>
+            </Button>
             </ThemeProvider>
         </Grid>
     )

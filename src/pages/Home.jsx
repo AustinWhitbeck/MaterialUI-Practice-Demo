@@ -1,24 +1,17 @@
-import './App.css';
+import React from 'react'
+
 // Custom Components
-import TourCard from './Components/TourCard';
-import MyAppBar from './Components/MyAppBar';
+import TourCard from '../Components/TourCard';
 
 // Material UI imports
 import { Container, Grid, Typography } from '@mui/material';
 
 //  Data imports
-import cities from "./data.json";
+import cities from "../data.json";
 
-
-
-
-function App() {
-
-
-  return (
-    <div className="App">
-      <MyAppBar/>
-      <Container 
+const Home = () => {
+    return (
+        <Container 
         sx={{
           marginY: 5
         }}
@@ -49,8 +42,7 @@ function App() {
 
 
       </Container>
-    </div>
-  );
+    )
 }
 
-export default App;
+export default Home
