@@ -84,13 +84,13 @@ const theme = createTheme({
 // Now we are importing the tour prop from the App.js file which is taking in the data.json information.
 // this is information that is being iterated over and each individual tour is mapped across this component.
 
-const TourCard = ({tour}) => {
+const TourCard = ({tour, cityId}) => {
 
     const navigate = useNavigate();
 
 
     const tourLink = () => {
-        navigate(`/${tour.id}`)
+        navigate(`/${cityId}/${tour.id}/`)
     }
 
     // const thisTour = {

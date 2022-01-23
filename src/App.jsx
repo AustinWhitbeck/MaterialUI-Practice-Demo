@@ -21,7 +21,7 @@ function App() {
         <Routes>
         
           <Route path="/" element={ <Home />} exact/>
-          <Route path="/:id" element={ <Tour />} exact/>
+          <Route path="/:cityId/:tourId" element={ <Tour />} exact/>
         </Routes>
       </BrowserRouter>
     </div>

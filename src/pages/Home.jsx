@@ -32,7 +32,9 @@ const Home = () => {
 {/* Now map the cities.tours (array of tours) onto each tour card. Passing the 'tour' object as a prop to be used on the cards info */}
             {city.tours.map((tour, index) => (
               <TourCard 
+              cityId={city.id}
               tour={tour}
+              id={tour.id}
               key={index}
               />
             ))}
